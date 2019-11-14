@@ -1,0 +1,10 @@
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# celery beat schedule file
+celerybeat-schedule
+
+# Others
+.idea
