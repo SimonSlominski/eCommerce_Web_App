@@ -1,17 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Products</title>
-</head>
-<body>
-<h1>Products</h1>
-<ul>
-    {% for product in object_list %}
-        <li>{{ product.name }}: ${{ product.price }}</li>
-    {% empty %}
-        <li>No articles yet.</li>
-    {% endfor %}
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <head>
+        <title>Products</title>
+    </head>
+
+
+    <body>
+    <h1>Products</h1>
+    <ul>
+
+    <div class="container">
+        <div class="row">
+            {% for product in object_list %}
+                <div class="col">
+                {% include 'products/snippets/card.html' with instance=product %}
+                {# <li><a href="{{ product.get_absolute_url }}">{{ product.name }}</a>: ${{ product.price }}</li>#}
+                {# <li>{{ product.name }}: ${{ product.price }}</li>#}
+                {% if forloop.counter|divisibleby:3 %}
+                </div></div>
+                    <div class="row">
+                        <div class="col-12">
+                        <hr/>
+                        </div>
+                {% else %}
+                    </div>
+                {% endif %}
+            {% empty %}
+        </div>
+    </div>
+                <li>No articles yet.</li>
+            {% endfor %}
     </ul>
-</body>
+
+
+    </body>
+
+{% endblock %}
+
 </html>
+
+

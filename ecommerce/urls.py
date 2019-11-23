@@ -18,17 +18,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib import admin
-from django.urls import path
-
-from products.views import ProductListView, ProductDetailView
+from django.urls import path, include
 
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.home_page, name='home_page'),
-    path('list', ProductListView.as_view(), name='product-list'),
-    path('product/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
+    path('admin/', admin.site.urls),
+    path('', include('products.urls')),
 ]
 
 
