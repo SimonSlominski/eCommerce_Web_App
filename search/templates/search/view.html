@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <head>
+        <title>Search</title>
+    </head>
+
+
+    <body>
+    <h1>Search</h1>
+    <ul>
+
+    <div class="container">
+        <div class="row">
+
+{#            {% if request.GET.q %}#}
+            {% if query %}
+                <div class="col-12 mb-3">
+{#                    <p> Result for: {{ request.GET.q }} </p>#}
+                    <p> Result for: {{ query }} </p>
+                </div>
+            {% endif %}
+
+            {% for product in object_list %}
+                <div class="col">
+                {% include 'products/snippets/card.html' with instance=product %}
+                 <li><a href="{{ product.get_absolute_url }}">{{ product.name }}</a>: ${{ product.price }}</li>
+                 <li>{{ product.name }}: ${{ product.price }}</li>
+                {% if forloop.counter|divisibleby:3 %}
+                </div></div>
+                    <div class="row">
+                        <div class="col-12">
+                        <hr/>
+                        </div>
+                {% else %}
+                    </div>
+                {% endif %}
+            {% empty %}
+        </div>
+    </div>
+                <li>No articles.</li>
+            {% endfor %}
+    </ul>
+
+
+    </body>
+
+{% endblock %}
+
+
+
