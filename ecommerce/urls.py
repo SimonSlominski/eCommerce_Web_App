@@ -25,8 +25,8 @@ from . import views
 urlpatterns = [
     path('', views.home_page, name='home_page'),
     path('admin/', admin.site.urls),
-    path('', include(('products.urls', 'products'), namespace='products')),
-    path('', include(('search.urls', 'search'), namespace='search')),
+    path('', include('products.urls')),
+    path('', include('search.urls')),
 ]
 
 
